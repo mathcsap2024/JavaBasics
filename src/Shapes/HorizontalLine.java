@@ -2,6 +2,7 @@ package Shapes;
 
 import Geometry.Point;
 import Main.Board;
+import Main.Exceptions.OutOfBoardException;
 import Main.Pixel;
 
 public class HorizontalLine extends Line {
@@ -16,7 +17,14 @@ public class HorizontalLine extends Line {
     @Override
     public void render(Board board) {
         for(int i=0;i<length;i++) {
-            board.setPixel(location.getX()+i,location.getY(), new Pixel(notation));
+            try {
+                board.setPixel(location.getX() + i, location.getY(), new Pixel(notation));
+            }
+            catch (OutOfBoardException ex)
+            {
+                System.out.println(ex.getMessage());
+                break;
+            }
         }
     }
 }

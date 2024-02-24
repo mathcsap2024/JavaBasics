@@ -1,25 +1,23 @@
 package Main;
 
 import Geometry.Point;
-import Shapes.HorizontalLine;
-import Shapes.Shape;
-import Shapes.Vertex;
-import Shapes.VerticalLine;
+import Main.Exceptions.OutOfBoardException;
+import Shapes.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 //CLASSPATH
 
-public class Application {
+public class Application implements Runnable{
     private Board board;
     private Scanner scanner;
-    private ArrayList<Shape> shapes;
+    private ArrayList<Drawable> objects;
 
     public Application() {
         initScanner();
         initBoard();
-        shapes = new ArrayList<>();
+        objects = new ArrayList<>();
     }
 
     private void initScanner() {
@@ -30,16 +28,16 @@ public class Application {
         int height = 10;
         int width = 10;
 
+//
 //        System.out.println("Please enter height: ");
 //        height = scanner.nextInt();
-//
 //        System.out.println("Please enter width: ");
 //        width = scanner.nextInt();
 
         board = new Board(width, height);
     }
 
-    public void setBoardPixel(int x, int y, Pixel p) {
+    public void setBoardPixel(int x, int y, Pixel p) throws OutOfBoardException {
         board.setPixel(x, y, p);
     }
 
@@ -53,8 +51,8 @@ public class Application {
     }
 
     public void render() {
-        for(Shape shape: shapes) {
-            shape.render(board);
+        for(Drawable object: objects) {
+            object.render(board);
         }
     }
 
@@ -63,7 +61,7 @@ public class Application {
     }
 
     public void addShape(Shape shape) {
-        shapes.add(shape);
+        objects.add(shape);
         this.render();
     }
 }

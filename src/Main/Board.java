@@ -1,5 +1,7 @@
 package Main;
 
+import Main.Exceptions.OutOfBoardException;
+
 public class Board {
     private int height, width;
     private Pixel[][] pixels;
@@ -28,7 +30,10 @@ public class Board {
         }
     }
 
-    public void setPixel(int x, int y, Pixel p) {
+    public void setPixel(int x, int y, Pixel p) throws OutOfBoardException {
+        if(y<0 || y>=pixels.length || x<0 || x>=pixels[0].length) {
+            throw new OutOfBoardException();
+        }
         pixels[y][x]=p;
     }
 
