@@ -53,5 +53,8 @@ public class Application implements Runnable{
         initTimer();
         mainFrame.setVisible(true);
         frameTimer.start();
+
+        JTextField field;
+        
     }
 }

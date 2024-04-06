@@ -1,8 +1,17 @@
 package EnumAndGenerics;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Application implements Runnable{
+
+    public <T extends Comparable> int compare(T a, T b) {
+        T object = a;
+//        object = new T();
+//        T[] array = new T[100];
+        return a.compareTo(b);
+    }
+
     @Override
     public void run() {
         ArrayList<String> stringArrayList = new ArrayList<>();
@@ -51,5 +60,34 @@ public class Application implements Runnable{
             first.getData().substring(1);
             first = first.getNext();
         }
+
+        Integer a=10,b=20;
+        Double c=0.0;
+        this.compare(a,c);
+
+        ArrayList<? extends Number> tempArraylist = null;
+        ArrayList<Integer> intList = null;
+        ArrayList<Double> doubleList = null;
+        ArrayList<Number> numList = null;
+
+        numList = intList;
+        numList.add(987.0);
+
+        numList.add(987);
+        tempArraylist = numList;
+        tempArraylist.get(3);
+
+        ArrayList<? super Integer> aaa = numList;
+        ArrayList<? super Integer> bbb = numList;
+
+        Integer n = 100;
+        aaa.add(n);
+
+        average(intList);
+    }
+
+    void average(ArrayList<? super Integer> list) {
+        Integer i = 10;
+        list.add(i);
     }
 }
