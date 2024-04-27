@@ -70,7 +70,7 @@ public class Application implements Runnable{
         ArrayList<Double> doubleList = null;
         ArrayList<Number> numList = null;
 
-        numList = intList;
+//        numList = intList;   //it raise compile error
         numList.add(987.0);
 
         numList.add(987);
