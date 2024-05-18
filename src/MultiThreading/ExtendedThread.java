@@ -34,16 +34,19 @@ public class ExtendedThread extends Thread {
 
     @Override
     public void run() {
-        for (int i = 0; i < 100; i++) {
-            try {
+        try {
+            for (int i = 0; i < 100000; i++) {
                 semaphore.aquire();
                 System.out.print(i);
                 System.out.print(": ");
                 System.out.println("Extended Thread");
                 semaphore.release();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (isInterrupted()) {
+            System.out.println("Interrupted.");
         }
     }
 }

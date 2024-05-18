@@ -23,6 +23,12 @@ public class Application implements Runnable{
         sideThread.start();
         extendedThread.start();
 
-//        mainThread.interrupt();
+        try {
+            Thread.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        extendedThread.interrupt();
     }
 }
