@@ -1,8 +1,7 @@
-package Annotations;
+package FunctionalProgramming;
 
 public class Main {
     public static void main(String[] args) {
-
-        String str;
+        new Application().run();
     }
 }
